@@ -1,0 +1,102 @@
+[
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "63",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "134",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20202",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "pdelacru"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "1040",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20209",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE MULTA",
+    "CANT": "2",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "9191"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "654",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "114",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "63",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "63",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "63",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  },
+  {
+    "DEP": "PRICO",
+    "DES_RES": "ORDEN DE PAGO",
+    "CANT": "63",
+    "COD_DEP": "0051",
+    "COD_ARE_ACO": "051",
+    "PER_GEN": "20201",
+    "NOMIND": "VALORES",
+    "COD_USUARIO": "cvillac"
+  }
+]
