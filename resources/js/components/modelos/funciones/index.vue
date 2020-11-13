@@ -24,7 +24,7 @@
           <div class="container-fluid">
             <div class="card card-info">
               <div class="card card-header" style="background-color: #A10328;">
-                <h3 class="card-tittle">Criterios de búsqueda</h3>
+                <h3 class="card-title">Criterios de búsqueda</h3>
               </div>
               <div class="card-body">
                 <form role="form">
@@ -58,8 +58,8 @@
               </div>
             </div>
             <div class="card card-info">
-              <div class="card-header" style="background-color: #A10328;">
-                <div class="card-tittle" >
+              <div class="card card-header" style="background-color: #A10328;">
+                <div class="card-title" >
                   <h3>Bandeja de resultados</h3>
                 </div>
               </div>

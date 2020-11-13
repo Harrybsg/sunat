@@ -12,7 +12,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-tools">
-            <router-link class="btn btn-info btn-sm" :to="{name: 'control.crear', params:{id: fillCrearActividad.nIdUsuario}}">
+            <router-link class="btn btn-info btn-sm" :to="{name: 'control.crear', params:{id: fillListarActividad.nIdUsuario}}">
               <i class="fas fa-arrow-left">Regresar</i>
             </router-link>
           </div>
@@ -21,67 +21,40 @@
           <div class="container-fluid">
             <div class="card card-info">
               <div class="card card-header" style="background-color: #A10328;">
-                <h3 class="card-tittle">Lista de actividades</h3>
+                <h3 class="card-title">Lista de actividades</h3>
               </div>
-              <div class="card-body">
-                <form role="form">
-                  <div class="row" >
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Fecha de Actividad</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="getFecha" readonly="readonly">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Actividad</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="textActividad" placeholder="Escriba su actividad" :readonly="trabajando">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Función</label>
-                        <div class="col-md-9">
-                          <el-select v-model="fillCrearActividad.nIdFuncion" placeholder="Seleccione la función" :readonly="trabajando" clearable>
-                            <el-option
-                              v-for="(item, index) in listFuncionesByUsuario" :key="index"
-                              :label="item.code_name"
-                              :value="item.nIdFuncion">
-                            </el-option>
-                          </el-select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Hora de inicio de actividad</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="iniActi" readonly="readonly">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Tiempo de actividad transcurrido</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="tiempo" readonly="readonly">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Tiempo fin</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="terActi" readonly="readonly">
-                        </div>
-                      </div>
-                    </div>
+              <div class="card-body table-responsive">
+                <template v-if="listActividadesUsuario.length">
+                  <table class="table table-hover table-head-fixed text-nowrap projects">
+                    <thead>
+                      <tr>
+                        <th>Actividad</th>
+                        <th>Función</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Hora Inicio</th>
+                        <th>Tiempo transcurrido</th>
+                        <th>Tiempo fin</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr v-for="(item, index) in listActividadesUsuario" :key="index">
+                        <td>{{item.activity}}</td>
+                        <td>{{item.function_id}}</td>
+                        <td>{{item.user_id}}</td>
+                        <td>{{item.start_date}}</td>
+                        <td>{{item.start_time}}</td>
+                        <td>{{item.trasnscurred_time}}</td>
+                        <td>{{item.finished_time}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </template>
+                <template v-else>
+                  <div class="callout callout-info">
+                    <h5>No se encontraron registros...</h5>
                   </div>
-                </form>
+                </template>
               </div>
             </div>
           </div>
@@ -94,7 +67,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-tittle">SUNAT</h5>
+            <h5 class="modal-title">SUNAT</h5>
             <button class="close" @click="abrirModal"></button>
           </div>
           <div class="modal-body">
@@ -135,20 +108,13 @@
           mensajeError: [],
           fullscreenLoading: false,
           listFunciones: [],
-          listFuncionesByUsuario: []
+          listActividadesUsuario: []
         }
     },
+    mounted(){
+      this.getListarActividades();
+    },
     methods: {
-      generarReporte(){
-        var ruta = '/administracion/actividades/postListarActividades'
-        axios.post(ruta,{
-          params:{
-            'nIdUsuario'  : this.fillCrearActividad.nIdUsuario
-          }
-        }).then(response => {
-          this.listFuncionesByUsuario = response.data;
-        })
-      },
       abrirModal(){
         this.modalShow = !this.modalShow;
       },
@@ -156,10 +122,11 @@
         var ruta = '/administracion/actividades/getListarActividades'
         axios.get(ruta,{
           params:{
-            'nIdUsuario'  : this.fillCrearActividad.nIdUsuario
+            'nIdUsuario'  : this.fillListarActividad.nIdUsuario
           }
         }).then(response => {
-          this.listFuncionesByUsuario = response.data;
+          console.log(response.data);
+          this.listActividadesUsuario = response.data;
         })
       },
     },

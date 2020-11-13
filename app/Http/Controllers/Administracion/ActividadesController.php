@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -67,4 +68,29 @@ class ActividadesController extends Controller
     return $rpta;
   }
 
+  public function setGenerarDocumento(Request $request){
+    if(!$request->ajax()) return redirect('/');
+
+    $logo = public_path('img/SunatLogo.jpg');
+
+    $nIdUsuario = $request->nIdUsuario;
+    $rpta1 = DB::select('call sp_Usuario_setGenerarDocumento(?)', [
+              $nIdUsuario
+    ]);
+    $rpta2 = DB::select('call sp_Usuario_setGenerarDocumentoActividades(?)', [
+              $nIdUsuario
+    ]);
+    $pdf = PDF::loadView('reportes.actividades.pdf.ver',[
+      'rpta1' => $rpta1,
+      'rpta2' => $rpta2,
+      'logo' => $logo,
+    ]);
+    return $pdf->download('invoice.pdf');
+  }
+
+  public function getListarUsuariosReceso(Request $request){
+    if(!$request->ajax()) return redirect('/');
+    $rpta = DB::select('call sp_Usuario_getListarUsuariosReceso');
+    return $rpta;
+  }
 }

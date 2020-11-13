@@ -49,7 +49,9 @@ Route::group(['middleware' => ['web']], function () {
 
   Route::get('/administracion/actividades/getListarFuncionesUsuario', 'Administracion\ActividadesController@getListarFuncionesUsuario');
   Route::post('/administracion/actividades/getListarFuncionesUsuario', 'Administracion\ActividadesController@setRegistrarActividad');
-  Route::post('/administracion/actividades/getListarActividades', 'Administracion\ActividadesController@getListarActividades');
+  Route::get('/administracion/actividades/getListarActividades', 'Administracion\ActividadesController@getListarActividades');
+  Route::post('/administracion/actividades/setGenerarDocumento', 'Administracion\ActividadesController@setGenerarDocumento');
+  Route::get('/administracion/actividades/getListarUsuariosReceso', 'Administracion\ActividadesController@getListarUsuariosReceso');
 
 
   Route::post('/archivo/setRegistrarArchivo', 'FilesController@setRegistrarArchivo');

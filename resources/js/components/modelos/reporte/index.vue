@@ -33,7 +33,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label">Nombre</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="fillBsqFunciones.cNombre" @keyup.enter="getListarFunciones">
+                          <input type="text" class="form-control" v-model="fillBsqFunciones.cNombre" @keyup.enter="getListarUsuariosReceso">
                         </div>
                       </div>
                     </div>
@@ -41,7 +41,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label">Código de función</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="fillBsqFunciones.cFuncion_Code" @keyup.enter="getListarFunciones">
+                          <input type="text" class="form-control" v-model="fillBsqFunciones.cFuncion_Code" @keyup.enter="getListarUsuariosReceso">
                         </div>
                       </div>
                     </div>
@@ -51,7 +51,7 @@
               <div class="card-footer">
                 <div class="row">
                   <div class="col-md-4 offset-4">
-                    <button class="btn btn-flat btn-info btnWidth" @click.prevent="getListarFunciones" v-loading.fullscreen.lock="fullscreenLoading">Buscar</button>
+                    <button class="btn btn-flat btn-info btnWidth" @click.prevent="getListarUsuariosReceso" v-loading.fullscreen.lock="fullscreenLoading">Buscar</button>
                     <button class="btn btn-flat btn-default btnWidth" @click.prevent="limpiarCriterioBsq">Limpiar</button>
                   </div>
                 </div>
@@ -161,15 +161,10 @@
       limpiarBandejaUsuarios(){
         this.listFunciones = [];
       },
-      getListarFunciones(){
+      getListarUsuariosReceso(){
         this.fullscreenLoading = true;
-        var url = '/administracion/funciones/getListarFunciones'
-        axios.get(url, {
-          params:{
-            'cNombre' : this.fillBsqFunciones.cNombre,
-            'cFuncion_Code' : this.fillBsqFunciones.cFuncion_Code
-          }
-        }).then(response => {
+        var url = '/administracion/funciones/getListarUsuariosReceso'
+        axios.get(url).then(response => {
           this.inicializarPaginacion();
           this.listFunciones = response.data;
           this.fullscreenLoading = false;

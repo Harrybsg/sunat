@@ -24,7 +24,7 @@
           <div class="container-fluid">
             <div class="card card-info">
               <div class="card card-header" style="background-color: #A10328;">
-                <h3 class="card-tittle">Criterios de búsqueda</h3>
+                <h3 class="card-title">Criterios de búsqueda</h3>
               </div>
               <div class="card-body">
                 <form role="form">
@@ -123,7 +123,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-tittle">SUNAT</h5>
+            <h5 class="modal-title">SUNAT</h5>
             <button class="close" @click="abrirModal"></button>
           </div>
           <div class="modal-body">
@@ -134,7 +134,7 @@
               <div class="container-fluid">
                 <div class="card card-info">
                   <div class="card-header">
-                    <h3 class="card-tittle">Información del rol</h3>
+                    <h3 class="card-title">Información del rol</h3>
                   </div>
                   <div class="card-body">
                     <form role="form">

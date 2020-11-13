@@ -67,12 +67,6 @@ export const rutas = [
       verificarAcceso(to, from, next);
     }
   },
-  { path: '/control/:id', name:'control.index', component: require('./components/modelos/control/index').default,
-    beforeEnter: (to, from, next) => {
-      verificarAcceso(to, from, next);
-    },
-    props:true
-  },
   { path: '/control/crear/:id', name:'control.crear', component: require('./components/modelos/control/create').default,
     beforeEnter: (to, from, next) => {
       verificarAcceso(to, from, next);

@@ -24,7 +24,7 @@
               <div class="col-md-5">
                 <div class="card card-info">
                   <div class="card card-header">
-                    <h3 class="card-tittle">Formulario registrar rol</h3>
+                    <h3 class="card-title">Formulario registrar rol</h3>
                   </div>
                   <div class="card-body">
                     <form role="form">
@@ -59,7 +59,7 @@
               <div class="col-md-7">
                 <div class="card card-info">
                   <div class="card card-header">
-                    <h3 class="card-tittle">Listar Permisos</h3>
+                    <h3 class="card-title">Listar Permisos</h3>
                   </div>
                 </div>
                 <div class="card-body table-responsive">
@@ -110,7 +110,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-tittle">Easy App Web</h5>
+            <h5 class="modal-title">Easy App Web</h5>
             <button class="close" @click="abrirModal"></button>
           </div>
           <div class="modal-body">

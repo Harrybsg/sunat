@@ -22,7 +22,7 @@
           <div class="container-fluid">
               <div class="card card-info">
                   <div class="card card-header">
-                    <h3 class="card-tittle">Formulario editar permiso</h3>
+                    <h3 class="card-title">Formulario editar permiso</h3>
                   </div>
                   <div class="card-body">
                     <form role="form">
@@ -63,7 +63,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-tittle">Easy App Web</h5>
+            <h5 class="modal-title">Easy App Web</h5>
             <button class="close" @click="abrirModal"></button>
           </div>
           <div class="modal-body">

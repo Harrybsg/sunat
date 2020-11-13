@@ -24,7 +24,7 @@
               <div class="col-md-5">
                 <div class="card card-info">
                   <div class="card card-header">
-                    <h3 class="card-tittle">Listar Permisos del Usuario {{fillFunciones.cNombreUsuario}}</h3>
+                    <h3 class="card-title">Listar Permisos del Usuario {{fillFunciones.cNombreUsuario}}</h3>
                   </div>
                   <div class="card-body table-responsive">
                     <template v-if="listFuncionesByUsuario.length">
@@ -61,7 +61,7 @@
               <div class="col-md-7">
                 <div class="card card-info">
                   <div class="card card-header">
-                    <h3 class="card-tittle">Listar Permisos</h3>
+                    <h3 class="card-title">Listar Permisos</h3>
                   </div>
                   <div class="card-body table-responsive">
                     <template v-if="listFuncionesFilter.length">
@@ -105,7 +105,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-tittle">SUNAT</h5>
+            <h5 class="modal-title">SUNAT</h5>
             <button class="close" @click="abrirModal"></button>
           </div>
           <div class="modal-body">

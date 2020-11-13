@@ -9,18 +9,11 @@
     </div>
     <div class="container-fluid">
       <div class="card">
-        <div class="card-header">
-          <div class="card-tools">
-            <router-link class="btn btn-info btn-sm" :to="{name: 'control.index', params:{id: fillCrearActividad.nIdUsuario}}">
-              <i class="fas fa-eye">Ver actividades</i>
-            </router-link>
-          </div>
-        </div>
         <div class="card-body">
           <div class="container-fluid">
             <div class="card card-info">
               <div class="card card-header" style="background-color: #A10328;">
-                <h3 class="card-tittle">Formulario registrar actividad</h3>
+                <h3 class="card-title">Formulario registrar actividad</h3>
               </div>
               <div class="card-body">
                 <form role="form">
@@ -56,7 +49,7 @@
                           <el-select v-model="fillCrearActividad.nIdFuncion" placeholder="Seleccione la función" clearable>
                             <el-option
                               v-for="(item, index) in listFuncionesByUsuario" :key="index"
-                              :label="item.code_name"
+                              :label="item.name"
                               :value="item.nIdFuncion">
                             </el-option>
                           </el-select>
@@ -112,6 +105,48 @@
                 </div>
               </div>
             </div>
+            <div class="card card-info">
+              <div class="card card-header" style="background-color: #A10328;">
+                <h3 class="card-title d-flex">Actividades de Hoy
+                  <button class="btn btn-info btn-sm ml-auto" @click.prevent="setGenerarDocumento">
+                    <i class="fas fa-plus-square">Generar Reporte</i>
+                  </button>
+                </h3>
+              </div>
+              <div class="card-body table-responsive">
+                <template v-if="listActividadesUsuario.length">
+                  <table class="table table-hover table-head-fixed text-nowrap projects">
+                    <thead>
+                      <tr>
+                        <th>Actividad</th>
+                        <th>Función</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Hora Inicio</th>
+                        <th>Tiempo transcurrido</th>
+                        <th>Tiempo fin</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr v-for="(item, index) in listActividadesUsuario" :key="index">
+                        <td>{{item.activity}}</td>
+                        <td>{{item.cCode}}</td>
+                        <td>{{item.cUser}}</td>
+                        <td>{{item.start_date}}</td>
+                        <td>{{item.start_time}}</td>
+                        <td>{{item.trasnscurred_time}}</td>
+                        <td>{{item.finished_time}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </template>
+                <template v-else>
+                  <div class="callout callout-info">
+                    <h5>No se encontraron registros...</h5>
+                  </div>
+                </template>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -122,7 +157,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-tittle">SUNAT</h5>
+            <h5 class="modal-title">SUNAT</h5>
             <button class="close" @click="abrirModal"></button>
           </div>
           <div class="modal-body">
@@ -175,7 +210,8 @@
           mensajeError: [],
           fullscreenLoading: false,
           listFunciones: [],
-          listFuncionesByUsuario: []
+          listFuncionesByUsuario: [],
+          listActividadesUsuario: []
         }
     },
     created(){
@@ -186,6 +222,7 @@
     },
     mounted(){
       this.getListarFuncionesUsuario();
+      this.getListarActividades();
       if (localStorage.getItem('trabajando')) {
         this.trabajando = JSON.parse(localStorage.getItem('trabajando'));
       }
@@ -276,6 +313,17 @@
       finalizarTrabajo(){
         this.trabajando = false;
       },
+      getListarActividades(){
+        var ruta = '/administracion/actividades/getListarActividades'
+        axios.get(ruta,{
+          params:{
+            'nIdUsuario'  : this.fillCrearActividad.nIdUsuario
+          }
+        }).then(response => {
+          console.log(response.data);
+          this.listActividadesUsuario = response.data;
+        })
+      },
       getListarFuncionesUsuario(){
         var ruta = '/administracion/actividades/getListarFuncionesUsuario'
         axios.get(ruta,{
@@ -309,6 +357,13 @@
             title: 'Se registró su actividad correctamente',
             showConfirmButton: false,
             timer: 1500
+          }).catch(error =>{
+            if(error.response.status == 401){
+              this.$router.push({name: 'login'});
+              location.reload();
+              sessionStorage.clear();
+              this.fullscreenLoading = false;
+            }
           })
         })
         this.limpiar();
@@ -343,6 +398,27 @@
         }
         return this.error;
       },
+      setGenerarDocumento(){
+        var config = {
+          responseType: 'blob'
+        }
+
+        var ruta = '/administracion/actividades/setGenerarDocumento'
+        axios.post(ruta,{
+            'nIdUsuario'  : this.fillCrearActividad.nIdUsuario
+        }, config).then(response => {
+          var oMyBlob = new Blob([response.data], {type : 'application/pdf'});
+          var url = URL.createObjectURL(oMyBlob);
+          window.open(url);
+        }).catch(error =>{
+          if(error.response.status == 401){
+            this.$router.push({name: 'login'});
+            location.reload();
+            sessionStorage.clear();
+            this.fullscreenLoading = false;
+          }
+        })
+      }
     },
     computed: {
       getHora(){
